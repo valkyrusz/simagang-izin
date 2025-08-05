@@ -23,10 +23,15 @@
 		<h2 class="mb-3 text-center">EDIT DATA IZIN</h2>	
 		<div class="row">
 		<div class="col-sm-3 text-center">
-			<img class="rounded img-thumbnail"src="foto/<?php echo $row['foto']?>">
-			<div>
-				[ <a href="gantiFotoMhs.php?id=<?php echo $row['id']?>">Ganti Foto</a> ]
-			</div>	
+            <img id="preview" src="<?php echo $row['foto'] ?>" alt="Foto Mahasiswa" class="img-fluid mb-3" style="max-width: 200px; max-height: 200px;">
+            <form>
+                <div class="form-group">
+                    <label for="foto">Ganti Foto:</label>
+                    <input type="file" class="form-control-file" id="foto" name="foto" accept="image/*">
+                    <small class="form-text text-muted">Format: jpg, jpeg, png. Maksimal 2MB.</small>
+                    <div id="fotoError" class="text-danger"></div>
+                </div>
+            </form>
 		</div>
 		<div class="col-sm-9">
 			<form id="editMahasiswaForm"enctype="multipart/form-data" method="post" action="sv_editMhs.php">
@@ -39,19 +44,19 @@
 					<input class="form-control" type="text" name="nama" id="nama" value="<?php echo $row['nama']?>">
 				</div>
 				<div class="form-group">
-				<label for="email">Universitas:</label>
+				<label for="univ">Universitas:</label>
 				<input class="form-control" type="text" name="univ" id="univ" value="<?php echo $row['univ']?>">
 			</div>
             <div class="form-group">
-				<label for="email">Program Studi:</label>
+				<label for="prodi">Program Studi:</label>
 				<input class="form-control" type="text" name="prodi" id="prodi" value="<?php echo $row['prodi']?>">
 			</div>
             <div class="form-group">
-				<label for="email">Tanggal Izin:</label>
+				<label for="tgl">Tanggal Izin:</label>
 				<input class="form-control" type="date" name="tgl" id="tgl" value="<?php echo $row['tgl']?>">
 			</div>
             <div class="form-group">
-				<label for="email">Keterangan:</label>
+				<label for="ket">Keterangan:</label>
 				<input class="form-control" type="text" name="ket" id="ket" value="<?php echo $row['ket']?>">
 			</div>		
 					<button class="btn btn-primary mt-2" type="submit" id="submit">Simpan</button>
