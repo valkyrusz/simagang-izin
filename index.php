@@ -74,16 +74,18 @@
                             $passw = md5($_POST['passw']);
                             $sql = "SELECT * FROM user WHERE username='$username' AND password='$passw'";
                             $hasil = mysqli_query($koneksi, $sql) or die(mysqli_error($koneksi));
-                            $row = mysqli_fetch_assoc($hasil);
-                            if (mysqli_affected_rows($koneksi) > 0) {
-                                $_SESSION['username'] = $username;
-                                header("location:homeadmin.php");
-                            } else {
+                            $data = mysqli_fetch_assoc($hasil);
+                        if ($data) {
+                            $_SESSION['username'] = $data['username'];
+                            $_SESSION['status'] = $data['status'];
+                            header("Location: homeadmin.php");
+                            exit;
+                        }
+                            } elseif (isset($_POST['username']) && !mysqli_num_rows($hasil)) {
                                 echo "<div class='alert alert-danger text-center mt-3'>
                                         <strong>Login gagal!</strong> Username atau password salah.
                                       </div>";
                             }
-                        }
                         ?>
                     </div>
                 </div>
